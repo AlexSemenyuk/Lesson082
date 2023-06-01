@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean class="org.itstep.dao.impl.UserDaoImpl"
+          id="userDaoImpl">
+    </bean>
+    <bean class="org.itstep.dao.impl.PostDaoImpl"
+          id="postDaoImpl">
+    </bean>
+    <bean class="org.itstep.service.UserService" id="userService">
+        <property name="UserDao" ref="userDaoImpl"/>
+    </bean>
+    <bean class="org.itstep.service.PostService" id="postService">
+        <property name="PostDao" ref="postDaoImpl"/>
+        <property name="UserService" ref="userService"/>
+    </bean>
+</beans>
