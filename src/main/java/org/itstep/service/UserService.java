@@ -1,29 +1,50 @@
 package org.itstep.service;
 
-import org.itstep.dao.impl.PostDao;
-import org.itstep.dao.impl.UserDao;
-import org.itstep.dao.impl.UserDaoImpl;
-import org.itstep.data.User;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.itstep.dao.UserDaoImpl;
+import org.itstep.data.entity.User;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+@Service
+//@RequiredArgsConstructor
+@Slf4j
 public class UserService {
-    private UserDao userDao;
-    public UserService() {
-        this.userDao = new UserDaoImpl();
-    }
 
-    public UserDao getUserDao() {
-        return userDao;
-    }
+    private UserDaoImpl userDao;
 
-    public void setUserDao(UserDao userDao) {
+    public UserService(UserDaoImpl userDao) {
         this.userDao = userDao;
+        log.info("Injected userDao {}", userDao);
     }
 
+//    public UserDao getUserDao() {
+//        return userDao;
+//    }
+//
+//    public void setUserDao(UserDao userDao) {
+//        this.userDao = userDao;
+//    }
+//
     public User findUserByLoginAndPassword (String login, String password){
-        return userDao.selectByLoginAndPassword(login, password);
+        User userRezult = null;
+        List<User> users = userDao.findAll();
+        for (User user:users){
+            if (login.equals(user.getLogin()) &&
+                    password.equals(user.getPassword())){
+                userRezult = user;
+                break;
+            }
+        }
+        return userRezult;
     }
 
-    public User findUserById(int authorIdDB) {
-        return userDao.selectById(authorIdDB);
+    public void addPostToUser(User user) {
+        userDao.addPostToUser(user);
     }
+//
+//    public User findUserById(int authorIdDB) {
+//        return userDao.selectById(authorIdDB);
+//    }
 }

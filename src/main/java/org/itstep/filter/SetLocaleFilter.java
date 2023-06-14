@@ -18,8 +18,8 @@ public class SetLocaleFilter implements Filter {
         session.setAttribute("lang", "uk");
 //        session.setAttribute("lang", "en");
 
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
+//        request.setCharacterEncoding("UTF-8");
+//        response.setCharacterEncoding("UTF-8");
 
         chain.doFilter(request, response);
     }

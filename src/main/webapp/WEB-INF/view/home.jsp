@@ -13,11 +13,11 @@
     <title>Blog Home - Start Bootstrap Template</title>
     <!-- Favicon-->
 <%--    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />--%>
-    <link rel="icon" type="image/x-icon" href="<c:url value="/resources/assets/favicon.ico"/>" />
+    <link rel="icon" type="image/x-icon" href="<c:url value="/static/assets/favicon.ico"/>" />
 
     <!-- Core theme CSS (includes Bootstrap)-->
 <%--    <link href="resources/css/styles.css" rel="stylesheet" />--%>
-    <link href="<c:url value="/resources/css/styles.css"/>"  rel="stylesheet" />
+    <link href="<c:url value="/static/css/styles.css"/>"  rel="stylesheet" />
 
 </head>
 <body>
@@ -63,17 +63,17 @@
                 <c:choose>
                     <c:when test="${s.count == 1}">
                         <div class="card mb-4">
-                            <a href="<c:url value="/post"/>" ><img class="card-img-top" data-id="${post.id}" src="<c:url value="${post.imagePath}"/>" alt="..."/></a>
+                            <a href="<c:url value="/post/${post.id}"/>" ><img class="card-img-top" data-id="${post.id}" src="<c:url value="${post.imagePath}"/>" alt="..."/></a>
                             <div class="card-body">
                                 <div class="small text-muted">${post.published}</div>
                                 <div class="small text-muted">Author: ${post.user.firstName} ${post.user.lastName}</div>
                                 <h2 class="card-title h4">${post.title}</h2>
                                 <div class="card-text">${post.content}</div>
                                 <form action="<c:url value="/post"/>">
+                                    <a class="btn btn-primary" href="<c:url value="/post/${post.id}"/>">Read more →</a>
 <%--                            <form action="<c:url value="/post"><c:param name="id" value="${post.id}"/></c:url>">--%>
-                                    <button class="btn btn-primary" data-id="${post.id}" type="submit">Read more →</button>
-                                </form>
-                                    <%--  <a class="details btn btn-primary" href="<c:url value="/post"/>" id="${post.id}">Read more →</a>--%>
+<%--                                    <button class="btn btn-primary" data-id="${post.id}" type="submit">Read more →</button>--%>
+<%--                                </form>--%>
                             </div>
                         </div>
                     </c:when>
@@ -88,16 +88,17 @@
                         <c:choose>
                             <c:when test="${s.index % 2 == 0}">
                                 <div class="card mb-4">
-                                    <a href="<c:url value="/post"/>" ><img class="card-img-top" data-id="${post.id}" src="<c:url value="${post.imagePath}"/>" alt="..."/></a>
+                                    <a href="<c:url value="/post/${post.id}"/>" ><img class="card-img-top" data-id="${post.id}" src="<c:url value="${post.imagePath}"/>" alt="..."/></a>
                                     <div class="card-body">
                                         <div class="small text-muted">${post.published}}</div>
                                         <div class="small text-muted">Author: ${post.user.firstName} ${post.user.lastName}</div>
                                         <h2 class="card-title h4">${post.title}</h2>
                                         <div class="card-text">${post.content}</div>
-                                        <form action="<c:url value="/post"></c:url>">
-                                            <button class="btn btn-primary"  data-id="${post.id}"  type="submit">Read more →</button>
-                                        </form>
-<%--                                        <a class="details btn btn-primary" href="<c:url value="/post"/>" id="${post.id}">Read more →</a>--%>
+<%--                                        <a class="btn btn-primary" href="/Lesson082/post/${post.id}">Read more →</a>--%>
+                                        <a class="btn btn-primary" href="<c:url value="/post/${post.id}"/>">Read more →</a>
+<%--                                        <form action="<c:url value="/post"></c:url>">--%>
+<%--                                            <button class="btn btn-primary"  data-id="${post.id}"  type="submit">Read more →</button>--%>
+<%--                                        </form>--%>
                                     </div>
                                 </div>
                             </c:when>
@@ -110,16 +111,17 @@
                         <c:choose>
                             <c:when test="${s.index % 2 == 1}">
                                 <div class="card mb-4">
-                                    <a href="<c:url value="/post"/>" ><img class="card-img-top" data-id="${post.id}" src="<c:url value="${post.imagePath}"/>" alt="..." /></a>
+                                    <a href="<c:url value="/post/${post.id}"/>" ><img class="card-img-top" data-id="${post.id}" src="<c:url value="${post.imagePath}"/>" alt="..." /></a>
                                     <div class="card-body">
                                         <div class="small text-muted">${post.published}}</div>
                                         <div class="small text-muted">Author: ${post.user.firstName} ${post.user.lastName}</div>
                                         <h2 class="card-title h4">${post.title}</h2>
                                         <div class="card-text">${post.content}</div>
-                                        <form action="<c:url value="/post"></c:url>">
-                                            <button class="details btn btn-primary" data-id="${post.id}"  type="submit">Read more →</button>
-                                        </form>
-<%--                                        <a class="btn btn-primary" href="<c:url value="/post"/>" id="${post.id}">Read more →</a>--%>
+                                        <a class="btn btn-primary" href="<c:url value="/post/${post.id}"/>">Read more →</a>
+<%--                                        <form action="<c:url value="/post"></c:url>">--%>
+<%--                                            <button class="details btn btn-primary" data-id="${post.id}"  type="submit">Read more →</button>--%>
+<%--                                        </form>--%>
+
                                     </div>
                                 </div>
                             </c:when>
@@ -157,13 +159,6 @@
                         </c:when>
                     </c:choose>
 
-<%--                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>--%>
-<%--                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>--%>
-<%--                    <li class="page-item"><a class="page-link" href="#!">2</a></li>--%>
-<%--                    <li class="page-item"><a class="page-link" href="#!">3</a></li>--%>
-<%--                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>--%>
-<%--                    <li class="page-item"><a class="page-link" href="#!">15</a></li>--%>
-<%--                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>--%>
                 </ul>
             </nav>
         </div>
@@ -219,62 +214,60 @@
 <%--<script src="resources/js/scripts.js"></script>--%>
 <script src="<c:url value="/resources/js/scripts.js"/>" ></script>
 <script>
-    function getAttributeFromTarget(target) {
-        const postId = target.getAttribute('data-id');
-        fetch("<c:url value="/post"/>", {
-            method: "POST",
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-            body: `id=\${postId}`
-        }).then(response => {
-            console.log(response.status);
-            location.reload();
-            // if (response.redirected) {
-            //     location = '/';
-            // }
-        }).catch(error => {
-            alert(error);
-        });
-    }
+    <%--function getAttributeFromTarget(target) {--%>
+    <%--    const postId = target.getAttribute('data-id');--%>
+    <%--    fetch("<c:url value="/post"/>", {--%>
+    <%--        method: "POST",--%>
+    <%--        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },--%>
+    <%--        body: `id=\${postId}`--%>
+    <%--    }).then(response => {--%>
+    <%--        console.log(response.status);--%>
+    <%--        location.reload();--%>
+    <%--        // if (response.redirected) {--%>
+    <%--        //     location = '/';--%>
+    <%--        // }--%>
+    <%--    }).catch(error => {--%>
+    <%--        alert(error);--%>
+    <%--    });--%>
+    <%--}--%>
 
-    const divSummary = document.querySelector(".summary");
-    divSummary.addEventListener("click", e => {
-        if (e.target.nodeName === 'BUTTON') {
-            const target1 = e.target;
-            getAttributeFromTarget(target1);
-        }
-        if (e.target.nodeName === 'IMG' ) {
-            const target2 = e.target;
-            getAttributeFromTarget(target2);
-        }
-    });
+    <%--const divSummary = document.querySelector(".summary");--%>
+    <%--divSummary.addEventListener("click", e => {--%>
+    <%--    if (e.target.nodeName === 'BUTTON') {--%>
+    <%--        const target1 = e.target;--%>
+    <%--        getAttributeFromTarget(target1);--%>
+    <%--    }--%>
+    <%--    if (e.target.nodeName === 'IMG' ) {--%>
+    <%--        const target2 = e.target;--%>
+    <%--        getAttributeFromTarget(target2);--%>
+    <%--    }--%>
+    <%--});--%>
 
-    function getAttributeFromTargetFromNav(target) {
-        const btnId = target.getAttribute('data-id');
-        console.log(btnId);
-        fetch("<c:url value="/home"/>", {
-            method: "POST",
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-            body: `numberOfPages=\${btnId}`
-        }).then(response => {
-            console.log(response.status);
-            location.reload();
-            // if (response.redirected) {
-            //     location = '/';
-            // }
-        }).catch(error => {
-            alert(error);
-        });
-    }
+    <%--function getAttributeFromTargetFromNav(target) {--%>
+    <%--    const btnId = target.getAttribute('data-id');--%>
+    <%--    console.log(btnId);--%>
+    <%--    fetch("<c:url value="/home"/>", {--%>
+    <%--        method: "POST",--%>
+    <%--        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },--%>
+    <%--        body: `numberOfPages=\${btnId}`--%>
+    <%--    }).then(response => {--%>
+    <%--        console.log(response.status);--%>
+    <%--        location.reload();--%>
+    <%--        // if (response.redirected) {--%>
+    <%--        //     location = '/';--%>
+    <%--        // }--%>
+    <%--    }).catch(error => {--%>
+    <%--        alert(error);--%>
+    <%--    });--%>
+    <%--}--%>
 
-    const ulNav = document.querySelector(".nav-total");
-    divSummary.addEventListener("click", e => {
-        if (e.target.nodeName === 'BUTTON') {
-            const target2 = e.target;
-            getAttributeFromTargetFromNav(target2);
-        }
-    });
-
-
+    <%--const ulNav = document.querySelector(".nav-total");--%>
+    <%--divSummary.addEventListener("click", e => {--%>
+    <%--    if (e.target.nodeName === 'BUTTON') {--%>
+    <%--        const target2 = e.target;--%>
+    <%--        getAttributeFromTargetFromNav(target2);--%>
+    <%--    }--%>
+    <%--});--%>
 </script>
 
 </body>

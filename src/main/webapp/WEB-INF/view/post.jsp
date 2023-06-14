@@ -12,10 +12,10 @@
   <title>Blog Post - Start Bootstrap Template</title>
   <!-- Favicon-->
 <%--  <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />--%>
-  <link rel="icon" type="image/x-icon" href="<c:url value="/resources/assets/favicon.ico"/>" />
+  <link rel="icon" type="image/x-icon" href="<c:url value="/static/assets/favicon.ico"/>" />
   <!-- Core theme CSS (includes Bootstrap)-->
 <%--  <link href="resources/css/styles.css" rel="stylesheet" />--%>
-  <link href="<c:url value="/resources/css/styles.css"/>"  rel="stylesheet" />
+  <link href="<c:url value="/static/css/styles.css"/>"  rel="stylesheet" />
 </head>
 <body>
 <!-- Responsive navbar-->

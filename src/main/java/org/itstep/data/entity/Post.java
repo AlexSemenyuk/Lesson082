@@ -1,36 +1,46 @@
-package org.itstep.data;
+package org.itstep.data.entity;
+
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
+@Entity
+@Table(name = "post")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(length = 255, nullable = false, name = "title")
     private String title;
+    @Column(length = 255, nullable = false, name = "published")
     private LocalDateTime published;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
-    private int userId;
+    @Column(length = 255, nullable = false, name = "image_path")
     private String imagePath;
+    @Column(columnDefinition = "text", nullable = false, name = "content")
     private String content;
+    @ManyToOne
+    @JoinColumn(name = "draft_id")
     private Draft draft;
 
-    public Post(int id, String title, LocalDateTime published, User user, String imagePath, String content, Draft draft) {
-        this.id = id;
+    public Post() {
+    }
+
+    public Post(String title, LocalDateTime published, String imagePath, String content) {
+        this.title = title;
+        this.published = published;
+        this.imagePath = imagePath;
+        this.content = content;
+    }
+
+    public Post(String title, LocalDateTime published, User user, String imagePath, String content) {
         this.title = title;
         this.published = published;
         this.user = user;
         this.imagePath = imagePath;
         this.content = content;
-        this.draft = draft;
-    }
-
-    public Post(int id, String title, LocalDateTime published, int userId, String imagePath, String content, Draft draft) {
-        this.id = id;
-        this.title = title;
-        this.published = published;
-        this.userId = userId;
-        this.imagePath = imagePath;
-        this.content = content;
-        this.draft = draft;
     }
 
     public int getId() {
@@ -65,14 +75,6 @@ public class Post {
         this.user = user;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public String getImagePath() {
         return imagePath;
     }
@@ -104,23 +106,9 @@ public class Post {
                 ", title='" + title + '\'' +
                 ", published=" + published +
                 ", user=" + user +
-                ", userId=" + userId +
                 ", imagePath='" + imagePath + '\'' +
                 ", content='" + content + '\'' +
                 ", draft=" + draft +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Post post = (Post) o;
-        return id == post.id && Objects.equals(title, post.title) && Objects.equals(published, post.published) && Objects.equals(user, post.user) && Objects.equals(imagePath, post.imagePath) && Objects.equals(content, post.content) && draft == post.draft;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, title, published, user, imagePath, content, draft);
     }
 }

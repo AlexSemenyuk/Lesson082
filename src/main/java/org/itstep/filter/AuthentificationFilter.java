@@ -11,7 +11,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.itstep.data.User;
+import org.itstep.data.entity.User;
 
 import java.io.IOException;
 
@@ -27,15 +27,19 @@ public class AuthentificationFilter implements Filter {
         User user = null;
         if (session.getAttribute("user") != null) {
             user = (User) session.getAttribute("user");
-            roleTMP = user.getRole().num();
+            roleTMP = user.getRole().getId();
 //            System.out.println("AU Filter roleTMP = " + roleTMP);
 //            System.out.println("Filter" + user.toString());
         }
         String reqURI = req.getRequestURI();
         String reqContextPath = req.getServletContext().getContextPath();
+
         if (reqURI.equals(reqContextPath + "/resources/css/styles.css") ||
                 reqURI.equals(reqContextPath + "/resources/js/scripts.js") ||
                 reqURI.equals(reqContextPath + "/resources/assets/favicon.ico") ) {
+            System.out.println("Filter: " + reqContextPath + "/static/css/styles.css");
+            System.out.println("Filter: " + reqContextPath + "/static/js/scripts.js");
+            System.out.println("Filter: " + reqContextPath + "/static/assets/favicon.ico");
             chain.doFilter(request, response);
         }
 

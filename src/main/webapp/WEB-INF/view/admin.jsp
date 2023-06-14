@@ -11,8 +11,8 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
     <title>Blog Home - Start Bootstrap Template</title>
-    <link rel="icon" type="image/x-icon" href="<c:url value="/resources/assets/favicon.ico"/>"/>
-    <link href="<c:url value="/resources/css/styles.css"/>" rel="stylesheet"/>
+    <link rel="icon" type="image/x-icon" href="<c:url value="/static/assets/favicon.ico"/>"/>
+    <link href="<c:url value="/static/css/styles.css"/>" rel="stylesheet"/>
     <style>
         #title.input,
         #imagepath.input {
@@ -75,7 +75,8 @@
                     <fmt:setBundle basename="messages" var="admin"/>
                     <fmt:message key="admin" bundle="${admin}"></fmt:message>
                 </h1>
-                <form class="form" method="post" enctype="multipart/form-data">
+
+                <form class="form" method="post" <%-- enctype="multipart/form-data"--%>>
                     <%-- title --%>
                     <fmt:setBundle basename="messages" var="title"/>
                     <input type="text" class="input form-control" id="title" name="title"
@@ -86,17 +87,21 @@
 <%--                            <option value="${user.id} ">${user.firstName}  ${user.lastName}</option>--%>
 <%--                        </c:forEach>--%>
 <%--                    </select>--%>
+
                     <%--image-path--%>
-                    <fmt:setBundle basename="messages" var="imagepath"/>
-                    <div class="input mb-2">
-                         <label class="btn btn-primary text-start" for="file"><fmt:message  key="imagepath" bundle="${imagepath}"></fmt:message>(.jpg, .jpeg, .png)</label>
-                         <input class="btn-success" type="file" id="file" name="file"
-                                accept=".jpg, .jpeg, .png" value="Choose file"
-                                style="opacity: 0;" required/>
-                   </div>
-<%--                    <input type="text" class="input form-control" id="imagepath" name="imagepath"--%>
-<%--                           placeholder="<fmt:message  key="imagepath" bundle="${imagepath}"></fmt:message>">--%>
-                    <%--content--%>
+<%--                    <fmt:setBundle basename="messages" var="imagepath"/>--%>
+<%--                    <div class="input mb-2">--%>
+<%--                         <label class="btn btn-primary text-start" for="file"><fmt:message  key="imagepath" bundle="${imagepath}"></fmt:message>(.jpg, .jpeg, .png)</label>--%>
+<%--                         <input class="btn-success" type="file" id="file" name="file"--%>
+<%--                                accept=".jpg, .jpeg, .png" value="Choose file"--%>
+<%--                                style="opacity: 0;" required/>--%>
+<%--                   </div>--%>
+
+<%--                        <fmt:message  key="imagepath" bundle="${imagepath}"></fmt:message>--%>
+                    <input type="text" class="input form-control" id="image" name="image"
+                           placeholder="Input image path">
+                        <%--  content--%>
+
                     <fmt:setBundle basename="messages" var="content"/>
                     <textarea class="input" id="content" name="content">
                          <fmt:message  key="content" bundle="${content}"></fmt:message>
@@ -112,14 +117,10 @@
             <div class="col-xl-3"></div>
         </div>
     </div>
-
-
-
 </main>
 <footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.tiny.cloud/1/smgt7motjmt39brlvr481ll1m7kn9fycui3egjbpp7vdwodp/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
@@ -129,6 +130,6 @@
     });
 </script>
 
-<%--<script src="<c:url value="/resources/js/scripts.js"/>" ></script>--%>
+
 </body>
 </html>
